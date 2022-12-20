@@ -2,69 +2,73 @@ import { useEffect, useState } from 'react'
 
 type TTile = { id: number; value: number; isPicked: boolean }
 
+const shuffleArray = (arr: any[]) => arr.sort(() => Math.random() - 0.5)
+
 function App() {
-  const [playBoard, setPlayBoard] = useState<TTile[]>([
-    {
-      id: 0,
-      value: 0,
-      isPicked: false,
-    },
-    {
-      id: 1,
-      value: 0,
-      isPicked: false,
-    },
-    {
-      id: 2,
-      value: 1,
-      isPicked: false,
-    },
-    {
-      id: 3,
-      value: 1,
-      isPicked: false,
-    },
-    {
-      id: 4,
-      value: 2,
-      isPicked: false,
-    },
-    {
-      id: 5,
-      value: 2,
-      isPicked: false,
-    },
-    {
-      id: 6,
-      value: 3,
-      isPicked: false,
-    },
-    {
-      id: 7,
-      value: 3,
-      isPicked: false,
-    },
-    {
-      id: 8,
-      value: 4,
-      isPicked: false,
-    },
-    {
-      id: 9,
-      value: 4,
-      isPicked: false,
-    },
-    {
-      id: 10,
-      value: 5,
-      isPicked: false,
-    },
-    {
-      id: 11,
-      value: 5,
-      isPicked: false,
-    },
-  ])
+  const [playBoard, setPlayBoard] = useState<TTile[]>(
+    shuffleArray([
+      {
+        id: 0,
+        value: 0,
+        isPicked: false,
+      },
+      {
+        id: 1,
+        value: 0,
+        isPicked: false,
+      },
+      {
+        id: 2,
+        value: 1,
+        isPicked: false,
+      },
+      {
+        id: 3,
+        value: 1,
+        isPicked: false,
+      },
+      {
+        id: 4,
+        value: 2,
+        isPicked: false,
+      },
+      {
+        id: 5,
+        value: 2,
+        isPicked: false,
+      },
+      {
+        id: 6,
+        value: 3,
+        isPicked: false,
+      },
+      {
+        id: 7,
+        value: 3,
+        isPicked: false,
+      },
+      {
+        id: 8,
+        value: 4,
+        isPicked: false,
+      },
+      {
+        id: 9,
+        value: 4,
+        isPicked: false,
+      },
+      {
+        id: 10,
+        value: 5,
+        isPicked: false,
+      },
+      {
+        id: 11,
+        value: 5,
+        isPicked: false,
+      },
+    ]),
+  )
 
   const [pickedTile, setPickedTile] = useState<{ first: TTile | null; second: TTile | null }>({
     first: null,
@@ -101,12 +105,12 @@ function App() {
 
   const resetPlayBoard = () => {
     setPlayBoard((state) =>
-      state
-        .map((t) => {
+      shuffleArray(
+        state.map((t) => {
           if (t.isPicked) t.isPicked = false
           return t
-        })
-        .sort(() => Math.random() - 0.5),
+        }),
+      ),
     )
   }
 
